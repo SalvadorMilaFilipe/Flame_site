@@ -222,6 +222,8 @@ body {
   width: 100%;
   margin: 0 auto;
   padding: 2.5rem 1.5rem 3rem;
+  overflow-x: hidden;
+  /* Prevent horizontal scroll on main content */
 }
 
 /* ================================================
@@ -1062,11 +1064,48 @@ body {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 3rem 2.5rem;
+  padding: 3rem 2rem;
   width: 100%;
-  max-width: 420px;
+  max-width: 440px;
   box-shadow: var(--shadow-lg);
   text-align: center;
+}
+
+.login-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Visibility Utils */
+.mobile-only {
+  display: none !important;
+}
+
+.desktop-only {
+  display: flex !important;
+}
+
+@media (max-width: 640px) {
+  .mobile-only {
+    display: flex !important;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .login-card {
+    padding: 2rem 1.25rem;
+    border-radius: var(--radius-md);
+  }
+
+  .login-form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
 }
 
 .login-header {
@@ -1247,11 +1286,23 @@ body {
   }
 }
 
+.topbar-end {
+  gap: 0.5rem;
+}
+
+.topbar-end .btn {
+  padding: 0.35rem 0.6rem;
+  font-size: 0.7rem;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  font-size: 0.7rem;
+}
 @media (max-width: 640px) {
-  .topbar {
-    background: #ffffff;
-    backdrop-filter: none;
-  }
+  .mobile-only { display: flex !important; }
+  .desktop-only { display: none !important; }
 
   .nav {
     display: none;
@@ -1273,9 +1324,7 @@ body {
     overflow-y: auto;
   }
 
-  .nav--active {
-    display: flex;
-  }
+  .nav--active { display: flex; }
 
   .nav-link {
     font-size: 1.05rem;
@@ -1307,29 +1356,17 @@ body {
     justify-content: space-between;
   }
 
-  @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
   .qa-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.25rem;
   }
 
-  .hero {
-    padding: 1rem 0 2rem;
-  }
+  .qa-card { padding: 1.5rem 1.25rem; }
+
+  .hero { padding: 1rem 0 2.5rem; }
 
   .hero-title {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     line-height: 1.2;
     margin-bottom: 0.5rem;
   }
@@ -1339,20 +1376,20 @@ body {
     line-height: 1.5;
   }
 
-  .page-header h1 {
-    font-size: 1.4rem;
+  .page-header h1 { font-size: 1.35rem; }
+
+  .card { padding: 1.25rem; }
+
+  .card-title { font-size: 0.95rem; }
+
+  .login-card {
+    padding: 2.5rem 1.5rem;
+    border-radius: var(--radius-md);
   }
 
-  .card {
-    padding: 1.25rem;
-  }
-
-  .card-title {
-    font-size: 0.95rem;
-  }
-
-  .about-hero {
-    padding: 1.5rem 1rem;
+  .login-form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .status-bar {
@@ -1370,21 +1407,6 @@ body {
     width: 100%;
   }
 
-  .topbar-end {
-    gap: 0.5rem;
-  }
-
-  .topbar-end .btn {
-    padding: 0.35rem 0.6rem;
-    font-size: 0.7rem;
-  }
-
-  .avatar {
-    width: 32px;
-    height: 32px;
-    font-size: 0.7rem;
-  }
-
   .about-subnav {
     padding-bottom: 0.75rem;
     margin-bottom: 1.5rem;
@@ -1394,7 +1416,7 @@ body {
   .footer {
     flex-direction: column;
     text-align: center;
-    gap: 1rem;
+    gap: 1.25rem;
     padding: 2.5rem 1.5rem;
   }
 }

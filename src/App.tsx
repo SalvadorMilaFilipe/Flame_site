@@ -201,10 +201,22 @@ export function App() {
                   <span>Admin</span>
                 </NavLink>
               )}
+
+              {/* Mobile Logout Button (Drawer only) */}
+              <div className="mobile-only" style={{ marginTop: "auto", borderTop: "1px solid var(--border-soft)", paddingTop: "1rem" }}>
+                <button
+                  onClick={handleLogout}
+                  className="nav-link"
+                  style={{ width: "100%", color: "var(--accent)", border: "none", background: "none" }}
+                >
+                  <span className="nav-icon">🚪</span>
+                  <span>Sair da Conta</span>
+                </button>
+              </div>
             </nav>
 
-            {/* User avatar */}
-            <div className="topbar-end">
+            {/* User avatar (Desktop only or hidden on mobile to avoid overlap) */}
+            <div className="topbar-end desktop-only">
               <button
                 onClick={handleLogout}
                 className="btn btn--outline"

@@ -101,7 +101,7 @@ export function RegisterPage() {
                         />
                     </div>
 
-                    <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "1rem" }}>
+                    <div className="login-form-row">
                         <div className="form-group">
                             <label className="form-label">Nacionalidade</label>
                             <input
@@ -127,10 +127,10 @@ export function RegisterPage() {
 
                     <div className="form-group">
                         <label className="form-label">Telemóvel</label>
-                        <div style={{ display: "flex", gap: "0.5rem" }}>
+                        <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
                             <select
                                 className="form-input"
-                                style={{ width: "110px", padding: "0.6rem 0.5rem" }}
+                                style={{ flex: "0 0 auto", width: "110px", padding: "0.6rem 0.5rem" }}
                                 value={phoneCode}
                                 onChange={(e) => setPhoneCode(e.target.value)}
                             >
@@ -141,7 +141,7 @@ export function RegisterPage() {
                             <input
                                 type="tel"
                                 className="form-input"
-                                style={{ flex: 1 }}
+                                style={{ flex: "1 1 180px" }}
                                 placeholder="912 345 678"
                                 value={phoneNumber}
                                 onChange={(e) => setPhoneNumber(e.target.value)}
