@@ -130,6 +130,16 @@ export function App() {
     setMenuOpen(false);
   }, [location.pathname]);
 
+  // Prevent scroll when menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => { document.body.style.overflow = "auto"; };
+  }, [menuOpen]);
+
   if (loading) {
     return (
       <div style={{ height: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
