@@ -182,7 +182,7 @@ export function AdminDashboardPage() {
         <p>Gestão interna e recrutamento de equipa F.L.A.M.E.</p>
       </div>
 
-      <div className="grid" style={{ gridTemplateColumns: "1fr 1.5fr" }}>
+      <div className="admin-grid">
         <div className="card">
           <h2 className="card-title">👥 Convidar Novo Staff</h2>
           <form onSubmit={handleInvite} className="login-form">
@@ -191,23 +191,23 @@ export function AdminDashboardPage() {
               <input className="form-input" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="Carlos Oliveira" required />
             </div>
 
-            <div className="form-group" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-              <div>
+            <div className="admin-form-row">
+              <div className="form-group">
                 <label className="form-label">Username (@)</label>
                 <input className="form-input" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="utilizador" required />
               </div>
-              <div>
+              <div className="form-group">
                 <label className="form-label">E-mail Profissional</label>
                 <input type="email" className="form-input" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="colab@flame.org" required />
               </div>
             </div>
 
-            <div className="form-group" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-              <div>
+            <div className="admin-form-row">
+              <div className="form-group">
                 <label className="form-label">Nacionalidade</label>
                 <input className="form-input" value={nationality} onChange={(e) => setNationality(e.target.value)} placeholder="Portuguesa" required />
               </div>
-              <div>
+              <div className="form-group">
                 <label className="form-label">Ano Nascimento</label>
                 <input type="number" className="form-input" value={birthYear} onChange={(e) => setBirthYear(e.target.value)} placeholder="1990" required />
               </div>

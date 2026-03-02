@@ -520,7 +520,7 @@ export function AreasSection() {
                 </p>
             </div>
 
-            <div className="grid" style={{ gridTemplateColumns: '1fr 350px', gap: '2rem', alignItems: 'start' }}>
+            <div className="areas-grid">
                 {/* Lado Esquerdo: Mapa em Imagem */}
                 <div className="card" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', background: 'var(--surface)' }}>
                     <h3 style={{ marginBottom: '1.5rem', fontSize: '1rem', fontWeight: 700, color: 'var(--muted)' }}>MAPA DE OPERAÇÕES</h3>

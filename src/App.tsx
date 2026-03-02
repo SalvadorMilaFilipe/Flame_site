@@ -123,6 +123,13 @@ export function App() {
     await supabase.auth.signOut();
   };
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Close menu when route changes
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
+
   if (loading) {
     return (
       <div style={{ height: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -147,13 +154,22 @@ export function App() {
       {session && (
         <header className="topbar">
           <div className="topbar-inner">
+            {/* Burger Menu for Mobile */}
+            <button
+              className="menu-toggle"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Menu"
+            >
+              {menuOpen ? "✕" : "☰"}
+            </button>
+
             {/* Logo */}
             <Link to="/" className="logo">
               <img src="/img/logo_atual.png" alt="F.L.A.M.E Logo" className="logo-img" />
             </Link>
 
             {/* Nav links */}
-            <nav className="nav">
+            <nav className={`nav ${menuOpen ? "nav--active" : ""}`}>
               <NavLink to="/vault" className={({ isActive }) => "nav-link" + (isActive ? " nav-link--active" : "")}>
                 <span className="nav-icon">🔐</span>
                 <span>Vault</span>
@@ -175,7 +191,6 @@ export function App() {
                   <span>Admin</span>
                 </NavLink>
               )}
-
             </nav>
 
             {/* User avatar */}
