@@ -268,7 +268,7 @@ export function AdminDashboardPage() {
         <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
           <div className="card card--primary">
             <h2 className="card-title">📂 Resumo do Sistema</h2>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginTop: "1rem" }}>
+            <div className="stats-grid" style={{ marginTop: "1rem" }}>
               <div style={{ textAlign: "center", padding: "1rem", background: "var(--surface)", borderRadius: "12px", border: "1px solid var(--border)" }}>
                 <span style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--accent)" }}>12</span>
                 <p style={{ fontSize: "0.7rem", color: "var(--muted)", textTransform: "uppercase" }}>Casos Ativos</p>

@@ -362,7 +362,7 @@ export function EthicsSection() {
                 </p>
             </div>
 
-            <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', marginTop: '2rem' }}>
+            <div className="ethics-grid" style={{ marginTop: '2rem' }}>
                 <div className="card" style={{ borderTop: '4px solid var(--blue)', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                     <div style={{ fontSize: '2rem' }}>🛡️</div>
                     <h3 className="card-title" style={{ fontSize: '1.2rem', margin: 0 }}>Privacidade Absoluta (Zero-Knowledge)</h3>
@@ -457,11 +457,7 @@ export function ServicesSection() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 {services.map((s) => (
-                    <div key={s.id} className="card service-card" style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'minmax(200px, 300px) 1fr',
-                        gap: '2.5rem',
-                        alignItems: 'center',
+                    <div key={s.id} className="card service-card-grid" style={{
                         overflow: 'hidden',
                         padding: '2rem'
                     }}>
@@ -540,13 +536,12 @@ export function AreasSection() {
                                 width: '100%',
                                 height: 'auto',
                                 display: 'block',
-                                objectFit: 'cover',
-                                clipPath: 'inset(0 8% 0 0)' // Corta o lado direito onde estariam os quadradinhos
+                                objectFit: 'cover'
                             }}
                         />
                     </div>
 
-                    <div style={{ marginTop: '2rem', display: 'flex', gap: '2rem', borderTop: '1px solid var(--border)', paddingTop: '1.5rem', width: '100%', justifyContent: 'center' }}>
+                    <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem 2rem', borderTop: '1px solid var(--border)', paddingTop: '1.5rem', width: '100%', justifyContent: 'center', flexWrap: 'wrap' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                             <div style={{ width: '12px', height: '12px', borderRadius: '3px', background: 'var(--green)' }}></div>
                             <span style={{ fontSize: '0.8rem', fontWeight: 600 }}>Sede (Albuquerque)</span>
