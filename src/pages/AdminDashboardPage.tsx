@@ -142,19 +142,34 @@ export function AdminDashboardPage() {
       if (authError) throw authError;
 
       if (authData.user) {
-        await supabase.from("staff_profiles").insert([{
+        const { error: staffError } = await supabase.from("staff_profiles").insert([{
           user_id: authData.user.id,
           department: dept,
           staff_role: role
         }]);
+
+        if (staffError) {
+          if (staffError.code === '23505' || staffError.message.includes('409')) {
+            throw new Error("Este utilizador já tem um perfil de staff associado (409).");
+          }
+          throw staffError;
+        }
       }
 
       // Envia o email automaticamente
-      await sendEmail(email, fullName, tempPassword, role);
+      let emailSent = true;
+      try {
+        await sendEmail(email, fullName, tempPassword, role);
+      } catch (e) {
+        emailSent = false;
+        console.error("Falha no envio de email:", e);
+      }
 
       setMessage({
         type: "success",
-        text: `✅ Sucesso! Utilizador criado e convite enviado para ${email}.`
+        text: emailSent
+          ? `✅ Sucesso! Utilizador criado e convite enviado para ${email}.`
+          : `⚠️ Conta criada, mas o email falhou. (Verifica a ligação no painel EmailJS).`
       });
 
       setEmail("");
@@ -163,8 +178,9 @@ export function AdminDashboardPage() {
       setNationality("");
       setBirthYear("");
     } catch (err: any) {
-      console.error("Erro:", err);
-      setMessage({ type: "error", text: `Erro: ${err.message}` });
+      console.error("Erro no processo:", err);
+      const errMsg = err.message || "Erro desconhecido ao criar conta.";
+      setMessage({ type: "error", text: `Erro: ${errMsg}` });
     } finally {
       setLoading(false);
     }
