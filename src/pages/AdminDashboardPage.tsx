@@ -6,9 +6,9 @@ import emailjs from '@emailjs/browser';
 // ========================================================
 // CONFIGURAÇÃO DO EMAILJS (Cria conta em emailjs.com)
 // ========================================================
-const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID"; // Substituir
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID"; // Substituir
-const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY"; // Substituir
+const EMAILJS_SERVICE_ID = "service_5hrp9lh";
+const EMAILJS_TEMPLATE_ID = "template_26l2nzm";
+const EMAILJS_PUBLIC_KEY = "cKbHLkaVafzdPCInj";
 
 const DEPARTMENTS = [
   { id: "it", label: "Departamento de TI" },
