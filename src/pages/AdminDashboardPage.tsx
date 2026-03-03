@@ -72,26 +72,26 @@ export function AdminDashboardPage() {
     checkAdmin();
   }, []);
 
-  const sendEmail = async (toEmail: string, name: string, pass: string, userRole: string) => {
+  const sendEmail = async (userEmail: string, userName: string, passwordGen: string, userRole: string) => {
     try {
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         {
-          to_email: toEmail,
-          to_name: name,
-          password: pass,
+          user_name: userName,
+          user_email: userEmail,
+          password: passwordGen,
           role: userRole,
           login_url: `${window.location.origin}/login`
         },
         EMAILJS_PUBLIC_KEY
       );
-      console.log("✅ Email enviado via EmailJS!");
+      console.log("✅ Convite enviado com sucesso via EmailJS!");
     } catch (error) {
-      console.error("❌ Erro EmailJS:", error);
-      // Fallback para mailto se o EmailJS falhar/não estiver configurado
-      const body = `Olá ${name}, a tua conta F.L.A.M.E: Login: ${toEmail} | Pass: ${pass}`;
-      window.open(`mailto:${toEmail}?subject=Conta F.L.A.M.E&body=${body}`);
+      console.error("❌ Erro no EmailJS:", error);
+      // Fallback funcional: abre o cliente de email local se o serviço falhar
+      const body = `Olá ${userName}, bem-vindo à equipa F.L.A.M.E!\n\nOs teus acessos:\nE-mail: ${userEmail}\nPalavra-passe: ${passwordGen}\nFunção: ${userRole}\n\nFaz login em: ${window.location.origin}/login`;
+      window.open(`mailto:${userEmail}?subject=Convite para Equipa F.L.A.M.E&body=${encodeURIComponent(body)}`);
     }
   };
 
