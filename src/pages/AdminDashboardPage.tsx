@@ -73,11 +73,9 @@ export function AdminDashboardPage() {
   }, []);
 
   const sendEmail = async (userEmail: string, userName: string, passwordGen: string, userRole: string) => {
-    // Inicializar o EmailJS com a Public Key (importante para v4)
-    emailjs.init(EMAILJS_PUBLIC_KEY);
-
     try {
-      await emailjs.send(
+      // Usar a forma mais direta do send (com a chave pública como string)
+      const result = await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         {
@@ -87,15 +85,21 @@ export function AdminDashboardPage() {
           role: userRole,
           login_url: `${window.location.origin}/login`
         },
-        {
-          publicKey: EMAILJS_PUBLIC_KEY,
-        }
+        EMAILJS_PUBLIC_KEY
       );
-      console.log("✅ Convite enviado com sucesso via EmailJS!");
-    } catch (error) {
-      console.error("❌ Erro no EmailJS:", error);
+
+      if (result.status === 200) {
+        console.log("✅ Convite enviado com sucesso!");
+      }
+    } catch (error: any) {
+      console.error("❌ Falha no EmailJS:", error);
+
+      // Mostrar alerta para o utilizador saber o que aconteceu (ex: 401 Unauthorized)
+      const errorMsg = error?.text || error?.message || "Erro desconhecido";
+      console.warn(`O EmailJS falhou (${errorMsg}). A abrir mailto como fallback.`);
+
       // Fallback: se o serviço falhar, abre o mailto como segurança
-      const body = `Olá ${userName}, bem-vindo à equipa F.L.A.M.E!\n\nOs teus acessos:\nE-mail: ${userEmail}\nPalavra-passe: ${passwordGen}\nFunção: ${userRole}\n\nFaz login em: ${window.location.origin}/login`;
+      const body = `Olá ${userName}, bem-vindo à equipa F.L.A.M.E!\n\nOs teus acessos:\nE-mail: ${userEmail}\nPalavra-passe: ${passwordGen}\nFunção: ${userRole}\n\nLogin: ${window.location.origin}/login`;
       window.open(`mailto:${userEmail}?subject=Convite para Equipa F.L.A.M.E&body=${encodeURIComponent(body)}`);
     }
   };
